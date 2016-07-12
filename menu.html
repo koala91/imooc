@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>menu</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.list1{
+			margin: 50px;
+			width: 150px;
+		}
+		.list1 ul{
+			border: 1px solid #f00;
+			border-radius: 3px;
+			padding: 5px 10px 3px;
+
+		}
+		.list1 li{
+			list-style: none;
+
+					}
+		.list1 li+li a{
+			border-top: 1px solid #f00;
+		}
+		.list1 a{
+			display: block;
+			padding: 3px 10px;
+			text-decoration: none;
+			font-size: 20px;
+			font-weight: 400;
+			color: #000;
+			/*background-color: #ffed53;*/
+		}
+		.list1 a:hover{
+			color: #069;
+		}
+		.list2 ul{
+			overflow: hidden;
+		}
+		.list2 li{
+			float: left;
+			list-style: none;
+		}
+		.list2 a{
+			display: block;
+			padding: 0 16px;
+			text-decoration: none;
+			font-size: 20px;
+			font-weight: 400;
+			color: #999;
+		}
+		.list2 li+li a{
+			border-left: 1px solid #aaa;
+		}
+		.list2 a:hover{
+			color: #555;
+		}
+		.list2{
+			margin-bottom: 50px;
+		}
+		/*一级菜单*/
+		.multi-drop-menu{
+			font-size:1em;
+
+		}
+		.multi-drop-menu a{
+			display: block;
+			color: #555;
+			background-color: #eee;
+			padding: 2em 1em;
+			border-width: 3px;
+			border-color: transparent;
+		}
+		.multi-drop-menu a:hover{
+			color: #fff;
+			background-color: #aaa;
+		}
+		.multi-drop-menu a:active{
+			background-color: #fff;
+			color: #ccc;
+		}
+		.multi-drop-menu *{
+			margin: 0;
+			padding: 0;
+		}
+		.multi-drop-menu ul{
+			float: left;
+		}
+		.multi-drop-menu li{
+			float: left;
+			list-style: none;
+			position: relative;
+		}
+		.multi-drop-menu li a{
+			display: block;
+			border-right-style: solid;
+			background-clip: padding-box;
+			text-decoration: none;
+		}
+		.multi-drop-menu li:last-child a{
+			border-right-style: none;
+		}
+		.multi-drop-menu li ul{
+			display: none;
+		}
+		/*二级菜单*/
+		.multi-drop-menu li ul{
+			width:9em;
+		}
+		.multi-drop-menu li li a{
+			border-right-style: none;
+			border-top-style: solid;
+		}
+		
+		.multi-drop-menu li ul{
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 100%;
+		}
+		.multi-drop-menu li li{
+			float: none;
+		}
+		.multi-drop-menu li li ul{
+			display: none;
+		}
+		.multi-drop-menu li ul{
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 100%;
+		}
+		.multi-drop-menu li:hover > ul{
+			display: block;
+		}
+		li ul{
+			display: none;
+		}
+		li:hover > ul{
+			display: block;
+		}
+		.multi-drop-menu li li ul{
+			position: absolute;
+			left: 100%;
+			top: 0;
+		}
+		.multi-drop-menu li:hover > a{
+			color: #fff;
+			background-color: #aaa;
+		}
+		.clearfix::after{
+			content: ".";
+			display: block;
+			height: 0;
+			visibility: hidden;
+			clear: both;
+			overflow: hidden;
+		}
+		/*开始表单样式编写*/
+		form{
+			margin: 20px;
+		}
+		 form.stylin_form1{
+		 	width: 16em;
+		 	margin: 20px auto;
+		 	border: 1px solid #bbb7ae;
+		 	padding: 0.5em 0.5em 0.15em;
+		 }
+		 .stylin_form1 h3{/*表单主标题*/
+		 	margin: 0;
+		 	padding: 0 0 0.2em 0.2em;
+		 	font-weight: 600;
+		 	color: #bbb7ae;
+		 }
+		 .stylin_form1 fieldset{/*  包含控件与标注*/
+		 	margin: 0;
+		 	padding: 0 0 0.2em 0;
+		 	width: 100%;
+		 	border: 0;
+		 }
+		 /*legend元素的位置不同寻常，所有我把它的文本包含在一个块级span中，转而为span设定样式*/
+		 .stylin_form1 legend{
+		 	width: 100%;
+		 	padding: 0.3em 0;
+		 	background: #bbb7ae;
+		 }
+		 .stylin_form1 legend span{
+		 	display: block;
+		 	font-size: 1em;
+		 	line-height: 1.1em;
+		 	padding: 0 0 0 0.4em;
+		 	font-weight: 700;
+		 	color: #fff;
+		 }
+		 .stylin_form1 section{
+		 	overflow: hidden;
+		 	padding: 0.2em 0 0.4em 0;
+		 	border-bottom: 8px solid #e7e5df;
+		 }
+		 .stylin_form1 section:last-child{
+		 	border-bottom: 0px;
+		 }
+		 .stylin_form1 section label,.stylin_form1 section h4{
+		 	display: block;
+		 	clear: both;
+		 	margin: 0.3em 0.3em 0 0;
+		 	padding-bottom: 0.1em;
+		 	font-size: 0.8em;
+		 	font-weight: 400;
+		 	line-height: 1.1;
+		 }
+		 .stylin_form1 section label span,.stylin_form1 section h4 span{
+		 	font-size: 0.75em;
+		 	vertical-align: text-top;
+		 	color: #f00;
+		 }
+		 .stylin_form1 section p.note{
+		 	font-size: 0.7em;
+		 	color: #f00;
+		 	margin: 0;
+		 	padding: 0 0 0.3em 0;
+		 }
+		 .stylin_form1 section input,.stylin_form1 section textarea,.stylin_form1 section select{
+		 	margin: 0.2em 0.5em 0.2em 0;
+		 	padding: 0.2em 0.4em;
+		 	color: #000;
+		 	box-shadow: 1px 1px 3px #ccc;
+		 	font-size: 0.8em;
+		 	outline: none;/*去掉磨人蓝色聚焦轮廓线*/
+		 }
+		 .stylin_form1 section input,.stylin_form1 section textarea{
+		 	width: 12em;
+		 	border: 1px solid #bbb7ae;
+		 	border-radius: 3px; 
+		 }
+		 .stylin_form1 section textarea{
+		 	height: 5em;
+		 	margin-top: 0.3em;
+		 	line-height: 1.1;
+
+		 }
+		 .stylin_form1 section p{
+		 	margin: 0.3em 0.75em 0;
+		 	clear: both;
+		 	font-size: 0.7em;
+		 	line-height: 1.1;
+		 	color: #000;
+		 }
+		 .stylin_form1 section p.error{
+		 	color: #f00;
+		 }
+		 /*复选框 单选按钮 选项列表*/
+		 .stylin_form1 section section{
+		 	overflow: hidden;
+		 	margin: 0.2em 0 0.3em 0.4em;
+		 	padding: 0 0 0.1em 0;
+		 	border-bottom: none;
+		 }
+		 .stylin_form1 section section input{
+		 	float: left;
+		 	clear: both;
+		 	width: auto;
+		 	margin:0.1em 0 0 0.3em;
+		 }
+		 .stylin_form1 section section label{
+		 	float: left;
+		 	clear: none;
+		 	width: 15em;
+		 	margin: 0.15em 0 0 0.6em;
+		 	font-weight: normal;
+		 	font-size: 0.7em;
+		 	line-height: 1.2;
+		 }
+		 .stylin_form1 section select{
+		 	margin-left: 0.4em;
+		 	font-size: 0.85em;
+		 }
+		 .stylin_form1 section input[type="submit"]{
+		 	width: auto;
+		 	margin: 0.4em 0.3em 0 0;
+		 	font-size: 1em;
+		 	font-weight: 800;
+		 	color: #fff;
+		 	background-color: #bbb7ea;
+		 	cursor: pointer;
+		 }
+		 .stylin_form1 >section:last-child{
+		 	text-align: center;
+		 }
+		 form.stylin_form1-label-left{
+		 	width: 22em;
+		 }
+		 form.stylin_form1-label-left label,form.stylin_form1-label-left h4{
+		 	float: left;
+		 	width: 8em;
+		 }
+		 form.stylin_form1-label-left p{
+		 	margin: 0 0 0 9.35em;
+		 	padding: 0.3em 0 0 0 ;
+		 	clear: both;
+		 }
+		 form.stylin_form1-label-left p.note{
+		 	margin: 0 0 0.2em 0;
+		 }
+		 form.stylin_form1-label-left section section{
+		 	width: 10em;
+		 	margin-left: 6.5em;
+		 	padding-top: 0;
+		 }
+		 form.stylin_form1-label-left section section input{
+		 	width: 1.25em;
+		 	margin-left: 0;
+		 }
+		 form.stylin_form1-label-left section input,form.stylin_form1-label-left section textarea,form.stylin_form1-label-left section select{
+		 	float: left;
+		 	width: 12em;
+		 }
+		 form.stylin_form1-label-left section select{
+		 	margin-left: 0.2em;
+		 }
+		 form.stylin_form1-label-left >section input[type=submit]{
+		 	float: none;
+		 }
+		 /*搜索框开始*/
+		 header{
+		 	display: block;
+		 	overflow: hidden;
+		 	width: 300px;
+		 	margin: 30px;
+		 	border-radius: 6px;
+		 	background-color: #ddd;
+		 }
+		 header .stylin-form-search1{
+		 	float: left;
+		 	width: 200px;
+		 	margin: 5px;
+		 	padding: 5px;
+		 }
+		 .stylin-form-search1 input{
+		 	float:right;
+		 	width: 70px;
+		 	padding: 2px 0 3px 5px;
+		 	outline: none;
+		 	font-size: 0.8em;
+		 	border-color: #eee #ccc #eee;
+		 	border-radius: 10px;
+		 	-webkit-transition: 2s width;
+		 }
+		 .stylin-form-search1 input:focus{
+		 	width: 200px;
+		 }
+		 .stylin-form-search1 label{
+		 	display: none;
+		 }
+		 /*弹出层*/
+		 figure{
+		 	width: 224px;
+		 	height: 288px;
+		 	margin: 20px 20px;
+		 	border: 1px solid #666;
+		 	position: relative;
+		 	float: left;
+		 }
+		 img{
+		 	display: block;
+		 }
+		 figcaption{
+		 	display: none;
+		 	position: absolute;
+		 	left: 74%;top: 14px;
+		 	width: 130px;
+		 	padding: 10px;
+		 	background: #f2eaea;
+		 	border: 3px solid red;
+		 	border-radius: 6px;
+		 }
+		 figure:hover figcaption{
+		 	display: block;
+		 	z-index: 2;
+		 }
+		 figure h3{
+		 	font-size: 14px;
+		 	color: #666;
+		 	margin-bottom: 6px;
+		 }
+		 figcaption a{
+		 	display: block;
+		 	text-decoration: none;
+		 	font-size: 12px;
+		 	color: #000;
+		 }
+		 /*红色三角形*/
+		 figcaption::after{
+		 	content: ".";
+		 	position: absolute;
+		 	border: 12px solid;
+		 	border-color: transparent red transparent transparent;
+		 	right: 100%;
+		 	top: 17px;
+		 	width: 0;
+		 	height: 0;
+		 }
+	</style>
+</head>
+<body>
+	<nav class="list1">
+		<ul>
+			<li><a href="#">alternative</a></li>
+			<li><a href="#">country</a></li>
+			<li><a href="#">jazz</a></li>
+			<li><a href="#">rock</a></li>
+		</ul>
+	</nav>
+	<nav class="list2">
+			<ul>
+				<li><a href="#">shirt</a></li>
+				<li><a href="#">pants</a></li>
+				<li><a href="#">dresses</a></li>
+				<li><a href="#">shoes</a></li>
+				<li><a href="#">accessories</a></li>
+			</ul>
+	</nav>
+	<nav class="multi-drop-menu clearfix">
+
+			<ul><!--一级菜单开始-->
+				<li><a href="#">power</a></li>
+				<li><a href="#">money</a></li>
+				<li><a href="#">love</a></li>
+				<li><a href="#">fame</a>
+					<ul><!--二级菜单开始-->
+						<li><a href="#">sport star</a></li>
+						<li><a href="#">movie star</a></li>
+						<li><a href="#">rock star</a>
+							<ul><!--三级菜单开始-->
+								<li><a href="#">bruce springsteen</a></li>
+								<li><a href="#">bono</a></li>
+								<li><a href="#">mick jagger</a></li>
+								<li><a href="#">bob dylan</a></li>
+							</ul><!--三级菜单结束-->
+						</li>
+						<li><a href="#">web designer</a></li>
+					</ul><!--二级菜单结束-->
+				</li>
+			</ul><!--一级菜单结束-->
+	</nav><!-- 导航菜单结束-->
+	<form class="stylin_form1" action="#" method="post">
+		<h3>A Stylin Form</h3>
+		<fieldset>
+			<legend><span>Part1 &#8226;Basic Controls</span></legend>
+			<!--开始单行文本输入控件-->
+			<section>
+				<p class="note">*indicate required field</p>
+				<label for="user-name">User Name <span>*</span></label>
+				<input type="text" name="user-name" id="user-name">
+				<p>Please select a user name</p>
+			</section>
+			<!--开始密码控件-->
+			<section>
+				<label for="password">Password <span>*</span></label>
+				<input type="password" name="password" id="password" maxlength="20">
+				<p>Password must be 8 or more characters</p>
+			</section>
+			<!--开始多行文本输入控件-->
+			<section>
+				<label for="descrption">Description</label>
+				<textarea id="descrption" name="descrption" placeholder="Enter the descrption here"></textarea>
+			</section>
+			<!--开始html5日起控件-->
+			<section>
+				<label for="descrption">Date </label>
+				<input type="date" name="event-date" id="special-date" min="2012-09-05">
+			</section>
+		</fieldset>
+		<fieldset>
+			<legend><span>Part 2 &#8226;Multiple-Choice Controls</span></legend>
+			<!--开始复选框-->
+			<section>
+				<h4>Select Any Number</h4>
+				<section>
+					<input type="checkbox" name="checkset" id="check1" value="1" tabindex="4">
+					<label for="check1">Choice 1</label>
+				</section>
+				<section>
+					<input type="checkbox" name="checkset" id="check2" value="2" checked="checked">
+					<label for="check2">Choice 2 is pre-checked</label>
+				</section>
+				<section>
+					<input type="checkbox" name="checkset" id="check3" value="3">
+					<label for="check3">Choice 3&mdash;add as many as you need!</label>
+				</section>
+				<p>You must choose one or more</p>
+			</section>
+			<!--开始单选按钮-->
+			<section>
+				<h4>Select Only One</h4>
+				<section>
+					<input type="radio" name="radioset" checked="checked" id="radio" value="Choice-1">
+					<label form="radio">Choice 1 is pre-selected and shows the text wraps nicely if it goes to multiple lines.</label>
+				</section>
+				<section>
+					<input type="radio" name="radioset" id="radio2" value="Choice-2">
+					<label for="radio2">Choice 2</label>
+				</section>
+				<section>
+					<input type="radio" name="radioset" id="radio3" value="Choice-3">
+					<label for="radio3">Choice 3</label>
+				</section>
+			</section>
+			<!--开始选项列表（下拉列表）-->
+			<section>
+				<label for="select-choice">Select You Choice</label>
+				<select id="select-choice" name="select-choice">
+				<option value="0">None</option>
+				<option value="1">Choice 1</option>
+				<option value="2">Choice 2</option>
+				<option value="3">Choice 3</option>
+				<option value="4">Choice 4</option>
+				</select>
+			</section>
+		</fieldset>
+		<!--开始提交按钮-->
+		<section>
+			<input type="submit" name="" value="Submit This Form">
+		</section>
+	</form>
+	<!--标注在左-->
+	<form class="stylin_form1 stylin_form1-label-left" action="#" method="post">
+		<h3>A Stylin Form</h3>
+		<fieldset>
+			<legend><span>Part1 &#8226;Basic Controls</span></legend>
+			<!--开始单行文本输入控件-->
+			<section>
+				<p class="note">*indicate required field</p>
+				<label for="user-name">User Name <span>*</span></label>
+				<input type="text" name="user-name" id="user-name">
+				<p>Please select a user name</p>
+			</section>
+			<!--开始密码控件-->
+			<section>
+				<label for="password">Password <span>*</span></label>
+				<input type="password" name="password" id="password" maxlength="20">
+				<p>Password must be 8 or more characters</p>
+			</section>
+			<!--开始多行文本输入控件-->
+			<section>
+				<label for="descrption">Description</label>
+				<textarea id="descrption" name="descrption" placeholder="Enter the descrption here"></textarea>
+			</section>
+			<!--开始html5日起控件-->
+			<section>
+				<label for="descrption">Date </label>
+				<input type="date" name="event-date" id="special-date" min="2012-09-05">
+			</section>
+		</fieldset>
+		<fieldset>
+			<legend><span>Part 2 &#8226;Multiple-Choice Controls</span></legend>
+			<!--开始复选框-->
+			<section>
+				<h4>Select Any Number</h4>
+				<section>
+					<input type="checkbox" name="checkset" id="check1" value="1" tabindex="4">
+					<label for="check1">Choice 1</label>
+				</section>
+				<section>
+					<input type="checkbox" name="checkset" id="check2" value="2" checked="checked">
+					<label for="check2">Choice 2 is pre-checked</label>
+				</section>
+				<section>
+					<input type="checkbox" name="checkset" id="check3" value="3">
+					<label for="check3">Choice 3&mdash;add as many as you need!</label>
+				</section>
+				<p>You must choose one or more</p>
+			</section>
+			<!--开始单选按钮-->
+			<section>
+				<h4>Select Only One</h4>
+				<section>
+					<input type="radio" name="radioset" checked="checked" id="radio" value="Choice-1">
+					<label form="radio">Choice 1 is pre-selected and shows the text wraps nicely if it goes to multiple lines.</label>
+				</section>
+				<section>
+					<input type="radio" name="radioset" id="radio2" value="Choice-2">
+					<label for="radio2">Choice 2</label>
+				</section>
+				<section>
+					<input type="radio" name="radioset" id="radio3" value="Choice-3">
+					<label for="radio3">Choice 3</label>
+				</section>
+			</section>
+			<!--开始选项列表（下拉列表）-->
+			<section>
+				<label for="select-choice">Select You Choice</label>
+				<select id="select-choice" name="select-choice">
+				<option value="0">None</option>
+				<option value="1">Choice 1</option>
+				<option value="2">Choice 2</option>
+				<option value="3">Choice 3</option>
+				<option value="4">Choice 4</option>
+				</select>
+			</section>
+		</fieldset>
+		<!--开始提交按钮-->
+		<section>
+			<input type="submit" name="" value="Submit This Form">
+		</section>
+	</form>
+	<!--搜索框开始-->
+	<header>
+		<form class="stylin-form-search1" action="#" method="post">
+		<label for="search">search</label>
+		<input type="search" name="search" id="search" placeholder="search">
+		</form>
+	</header>
+	<figure>
+		<img src="../kaola.jpg" alt="kaola">
+		<figcaption>
+			<h3>考拉</h3>
+			<a href="">更多信息</a>
+		</figcaption>
+	</figure>
+	<figure class="click-me">
+		<img src="../kaola.jpg" alt="考拉">
+		<figcaption>
+			<h3>考拉</h3>
+			<a href="">更多信息</a>
+		</figcaption>
+	</figure>
+	<figure>
+		<img src="../kaola.jpg" alt="考拉">
+		<figcaption>
+			<h3>考拉</h3>
+			<a href="">更多信息</a>
+		</figcaption>
+	</figure>
+	<figure>
+		<img src="../kaola.jpg" alt="考拉">
+		<figcaption>
+			<h3>考拉</h3>
+			<a href="">更多信息</a>
+		</figcaption>
+	</figure>
+	<figure>
+		<img src="../kaola.jpg" alt="考拉">
+		<figcaption>
+			<h3>考拉</h3>
+			<a href="">更多信息</a>
+		</figcaption>
+	</figure>
+	<figure>
+		<img src="../kaola.jpg" alt="考拉">
+		<figcaption>
+			<h3>考拉</h3>
+			<a href="">更多信息</a>
+		</figcaption>
+	</figure>
+	<figure>
+		<img src="../kaola.jpg" alt="考拉">
+		<figcaption>
+			<h3>考拉</h3>
+			<a href="">更多信息</a>
+		</figcaption>
+	</figure>
+	<figure>
+		<img src="../kaola.jpg" alt="考拉">
+		<figcaption>
+			<h3>考拉</h3>
+			<a href="">更多信息</a>
+		</figcaption>
+	</figure>
+
+</body>
+</html>
