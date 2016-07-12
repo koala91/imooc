@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+		margin: 0;
+		padding: 0;
+		}
+		.clearfix:after{
+		content: ".";
+		display: block;
+		height: 0;
+		visibility: hidden;
+		clear: both;
+		overflow: hidden;
+		}
+		body{
+			background-color: #efefef;
+			margin: 0;
+		}
+		#wrapper{
+			width: 980px;
+			margin: 0 auto 20px;
+		}
+		header{
+			position: relative;
+			height: 70px;
+			margin: 10px 0;
+			background: #fff;
+			border-radius: 20px 0 ;
+			box-shadow: 0 12px 8px -9px #555;
+			padding:1px;
+		}
+		header section#title{
+			position: absolute;
+			padding-left: 15px;
+			padding-top: 5px; 
+			width: 300px;
+			height: 65px;
+			left:0;
+			top: 0;
+		}
+		header h1{
+			padding: 9px 12px 0;
+			font-weight: 700;
+			font-size: 30px;
+			line-height: 30px;
+			letter-spacing: -0.075em;
+			color: #4eb8ea;
+		}
+		header h2{
+			padding: 0 12px;
+			font-weight: 400;
+			font-size: 11.25px;
+			line-height: 16px;
+			letter-spacing: -0.025em;
+			color: #333;
+		}
+		form.search{
+			position: absolute;
+			width: 150px;
+			top: 23px;
+			right: 20px;
+		}
+		.search input{
+			float: right;
+			width: 70px;
+			padding: 2px 0 3px 5px;
+			border-radius: 10px 0 10px 10px;
+			font-weight: 400;
+			font-size: 1em;
+			color: #888;
+			outline: none;
+			-webkit-transition: 2s width;
+		}
+		.search input:focus{
+			width: 140px;
+		}
+		.search label{
+			display: none;
+		}
+		form.search input{
+			background-color: #fff;
+		}
+		form.search input::-webkit-input-placeholder{
+			color: #ccc;
+		}
+		nav.menu{
+			margin: 19px auto;
+			padding: 0;
+			text-align: center;
+			font-size: 0.8em;
+		}
+		nav.menu>ul{
+			display: inline-block;
+		}
+		nav.menu li{
+			float: left;
+			list-style: none;
+			position: relative;
+		}
+		nav.menu li a{
+			display: block;
+			padding: 0.25em 0.8em;
+			font-style: normal;
+			font-weight: 600;
+			font-size: 1.2em;
+			text-align: left;
+			color:#fff;
+			text-decoration: none;
+		}
+		nav.menu li.choice1 a{
+			background: #f58c21;
+		}
+		nav.menu li.choice2 a{
+			background: #4eb8ea;
+		}
+		nav.menu li.choice3 a{
+			background: #d6e636;
+		}
+		nav.menu li.choice4 a{
+			background: #ee4c98;
+		}
+		nav.menu li.choice5 a{
+			background: #f58c21;
+		}
+		nav.menu li:hover > a{
+			color: #555;
+			border-color: #fff;
+			border: 0;
+		}
+		nav.menu li:last-child a{
+			border-bottom-right-radius: 10px;
+		}
+		nav.menu li:first-child a{
+			border-top-left-radius: 10px;
+		}
+		nav.menu li ul{
+			opacity: 0;
+			visibility: hidden;
+			position: absolute;
+			width: 8em;
+			left: 0;
+			top: 100%;
+			transition: 1s all;
+			-webkit-transition: 1s all;
+		}
+		nav.menu li:hover > ul{
+			opacity: 1;
+			visibility: visible;
+		}
+		nav.menu li li{
+			float: none;
+		}
+		nav.menu li li:first-child a{
+			border-radius: 0;
+		}
+		nav.menu li li:last-child a{
+			border-bottom-left-radius: 10px;
+		}
+		section#feature-area{
+			overflow: hidden;
+			margin: 16px 0 0;
+			padding: 0 0 10px;
+		}
+		section#feature-area article{
+			float: left;
+			width: 66%;
+		}
+		section#feature-area aside{
+			float: right;
+			width: 34%;
+		}
+		section#feature-area article .inner{
+			
+			padding: 12px;
+			
+			background: #fff;
+			border-radius: 20px 0;
+			box-shadow: 0 12px 8px -9px #555;
+		}
+		section#feature-area article a{
+			text-decoration: none;
+		}
+		section#feature-area article img{
+			float: left;
+			padding: 0 10px 10px 0;
+		}
+		section#feature-area article h4{
+			font-style: normal;
+			font-weight: 400;
+			font-size: 1em;
+			color: #f58c21;
+			letter-spacing: -0.075em;
+		}
+		section#feature-area article h3{
+			font-style: normal;
+			font-weight: 700;
+			font-size: 1.75em;
+			color: #555;
+			margin: 0 0 12px 0;
+			letter-spacing: -0.05em;
+		}
+		section#feature-area article#blog-leadoff p{
+			font-style: normal;
+			font-weight: 400;
+			font-size: 1.1em;
+			line-height: 1.5em;
+			color: #616161;
+			margin: 0;
+			text-align: justify;
+		}
+		section#feature-area article#blog-leadoff p::first-letter{
+			font-style: normal;
+			font-weight: 700;
+			font-size: 4.5em;
+			float: left;
+			margin: 0.05em 0.05em 0 0 ;
+			line-height: 0.6;
+			text-shadow: 1px 3px 3px #ccc;
+		}
+		section#feature-area article#blog-leadoff p::first-line{
+			
+		}
+		section#feature-area aside{
+			float: right;
+			width: 34%;
+		}
+		/*表单开始*/
+		form.signin{
+			width: 19em;
+			float: right;
+			background: #fff;
+			border-radius: 10px 0 10px 0;
+			box-shadow: 0 12px 8px -9px #555;
+		}
+		.signin fieldset {
+			border:0;
+			margin: 10px 14px;
+		}
+		.signin  legend span{
+			font-weight: 700;
+			font-size: 1.3em;
+			line-height: 1.1em;
+			color: #4eb8ea;
+			letter-spacing: -0.05em;
+		}
+		.signin section{
+			overflow: hidden;
+			padding: 0.25em 0;
+		}
+		.signin  section label{
+			font-weight: 400;
+			float: left;
+			width: 5em;
+			margin: 0.5em 0.3em 0 0 ;
+			line-height: 1.1;
+			color: #555;
+		}
+		.signin  section input{
+			float: right;
+			width: 10.5em;
+			margin: 0.2em 0 0 0.5em;
+			padding: 3px 10px 2px;
+			color: #555;
+			font-size: 0.8em;
+			outline: none;
+			border-radius: 10px 0 10px 0;
+		}
+		input:-webkit-autofill{
+			color: #fff !important;
+		}
+		.signin section input[type=submit]{
+			float: right;
+			width: auto;
+			margin: 0 2px 3px 0;
+			padding:0 8px 3px;
+			font-size: 1em;
+			font-weight: 800;
+			color: #fff;
+			border: none;
+			background-color: #d6e636;
+			box-shadow: 1px 1px 2px #888;
+		}
+		.signin section p{
+			float: right;
+			clear: both;
+			margin: 0.2em 0 0;
+			text-align: right;
+			font-size: 0.8em;
+			line-height: 1;
+			color: #555;
+		}
+		.signin section p a:hover{
+			color: #777;
+			text-decoration: none;
+		}
+		.signin section p.direction.error{
+			display: block;
+			color: #f00;
+		}
+		.signin section p.direction{
+			display: none;
+		}
+		section#feature-area nav{
+			width: 19em;
+			float: right;
+			margin: 15px 0 0;
+			padding: 0.6em 0 0.75em;
+			background: #fff;
+			border-radius: 10px 0 10px 0;
+			box-shadow: 0 12px 8px -9px #555;
+		}
+		section#feature-area nav h3{
+			padding: 0 14px 0;
+			font-weight: 700;
+			font-size: 1.3em;
+			text-align: left;
+			color: #aaa;
+			letter-spacing: -0.05em;
+		}
+		section#feature-area nav ul{
+			margin-left: 20px;
+		}
+		section#feature-area nav ul li{
+			padding: 0.7em 0 0 2em;
+			position: relative;
+			list-style: none;
+		}
+		section#feature-area nav ul li:before{/*定制项目符号*/
+			content: "";
+			position: absolute;
+			height: 10px;
+			width: 10px;
+			left: 12px;
+			top: 12px;
+			border-radius: 5px 0 5px 0;
+			background-color: #d6e636;
+			box-shadow: 1px 1px 2px #888;
+		}
+		section#feature-area nav li a{
+			display: block;
+			text-decoration: none;
+			font-size: 0.9em;
+			color: #616161;
+		}
+		section#feature-area nav li a:hover{
+			color: #000;
+		}
+		section#book-area{
+			clear: both;
+			border-radius: 20px 0 20px 0;
+			background: #fff;
+			margin: 8px 0 16px;
+
+			overflow: hidden;
+		}
+		section#book-area article{
+			float: left;
+			width: 25%;
+			padding: 10px 0;
+			background: none;
+		}
+		section#book-area article .inner{
+			position: relative;
+			width: 140px;
+			margin: 0 auto;
+		}
+		section#book-area article .inner h3{
+			position: absolute;
+			width: 160px;
+			left: 112%;
+			bottom: 5px;
+			transform: rotate(-90deg);
+			transform-origin: left bottom;
+			color: #ccc;
+			font-size: 1.4em;
+			font-style: normal;
+			font-weight: 900;
+			text-align: left;
+
+		}
+		section#book-area article img{
+			box-shadow: 0 12px 8px -9px #555;
+		}
+		section#book-area article aside{
+			display: none;
+			position: absolute;
+			z-index: 2;
+			width: 200px;
+			background: #fff;
+			padding: 10px 2px 5px;
+			border: 2px solid #f58c21;
+			border-radius: 10px 0 10px 10px;
+			box-shadow: 4px 4px 16px #555;
+			color: #555;
+			font-size: 0.8em;
+			line-height: 1.5em;
+		}
+		section#book-area article:hover aside{
+			display: block;
+		}
+		section#book-area article aside li{
+			padding: 0.25em 0 0.75em 1em;
+			list-style: none;
+			line-height: 1.2em;
+		}
+		section#book-area article aside li a{
+			text-decoration: none;
+			font-size: 1.2em;
+			color: #616161;
+		}
+		section#book-area article aside li a:hover{
+			color: #333;
+		}
+		section#book-area article.book-area-list-left aside{
+			left: 84%;
+			top: 14px;
+		}
+		section#book-area article.book-area-list-right aside{
+			right: 84%;
+			top:14px;
+		}
+		section#book-area article aside:after{
+			content: "";
+			position: absolute;
+			top:33px;
+			border: 12px solid;
+			width: 0;
+			height: 0;
+		}
+		section#book-area article.book-area-list-left aside:after{
+			right: 100%;
+			border-color: transparent #f58c21 transparent transparent;
+		}
+		section#book-area article.book-area-list-right aside:after{
+			left: 100%;
+			border-color: transparent transparent transparent #f58c21;
+		}
+		section#book-area article aside:before{
+			content: "";
+			position: absolute;
+			top:37px;
+			border: 8px solid;
+			width: 0;
+			height: 0;
+			z-index: 10;
+		}
+		section#book-area article.book-area-list-left aside:before{
+			right: 100%;
+			border-color: transparent white transparent transparent; 
+		}
+		section#book-area article.book-area-list-right aside:before{
+			left: 100%;
+			border-color: transparent transparent transparent white;
+		}
+		footer{
+			padding: 0.5em 0 0.35em 0;
+			text-align: center;
+			border-radius: 10px 0 10px 10px;
+			background: #fff;
+			box-shadow: 0 12px 8px -9px #555;
+		}
+		footer p{
+			font-weight: 400;
+			font-size: 0.85em;
+			
+			color: #555;
+		}
+		footer p a{
+			font-style: italic;
+			font-weight: 700;
+			font-size: 1em;
+			color: #4eb8ea;
+			text-decoration: none;
+		}
+		footer p a:hover{
+			color: #777;
+		}
+		footer ul{
+			display: inline-block;
+			margin: 4px 0 0;
+		}
+		footer li{
+			list-style: none;
+			float: left;
+			font-weight: 400;
+			font-size: 0.85em;
+		}
+		footer li + li a{
+			border-left: 1px solid #ccc;
+		}
+		footer li a{
+			text-decoration: none;
+			color: #aaa;
+			padding: 0 5px;
+		}
+		footer a:hover{
+			color: #777;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		 <header><!--一级-->
+		 	<section id="title"><!--二级-->
+		 		<h1>Stylin&#8217;with CSS</h1>
+		 		<h2>The Blog and Book of Charles Wyke-Smith</h2>
+		 	</section>
+		 	<nav class="menu"><!--二级菜单-->
+		 		<ul>
+		 			<li class="choice1"><a href="">Articles</a></li>
+		 			<li class="choice2"><a href="">Books</a>
+						<ul>
+							<li><a href="#">Articles</a></li>
+							<li><a href="#">Books</a></li>
+							<li><a href="#">Resources</a></li>
+							<li><a href="#">Bookshelf</a></li>
+							<li><a href="#">Contact Me</a></li>
+						</ul>
+		 			</li>
+		 			<li class="choice3"><a href="">Resources</a></li>
+		 			<li class="choice4"><a href="">Bookshelf</a></li>
+		 			<li class="choice5"><a href="">Contact Me</a></li>
+		 		</ul>
+		 	</nav>
+		 	<form class="search" action="#" method="post"><!--二级搜索框-->
+		 		<label for="user-name">search</label>
+		 		<input type="text" name="user-name" id="user-name" placeholder="search">
+		 	</form>
+		 </header>
+
+		 <section id="feature-area">
+		 	<article id="blog-leadoff">
+				<div class="inner">
+					<h4>September 7, 2012</h4>
+					<a href="#"><h3>Managing CSS Classes witch jQuery</h3></a>
+					<img src="../kaola.jpg" alt="考拉">
+					<p>Computers are changing our life. You can do a lot of things with a computer. Such as, you can use a computer to write articles, watch video CDs, play games and do office work. But the most important use of a computer is to join the Internet.We don’t need to leave home to borrow books from a library or to do shopping in a supermarket.Computers are changing our life. You can do a lot of things with a computer. Such as, you can use a computer to write articles, watch video CDs, play games and do office work. But the most supermarket.Computers are changing our life. You can do a lot of things with a computer. Such as, you can use a computer to write articles, watch video CDs, play games and do office work. But the most  </p>
+				</div>
+		 	</article>
+		 	<aside>
+		 		<form autocomplete="off" class="signin" action="#" method="post">
+					<fieldset>
+						<legend><span>Sign In For Code and Updates</span></legend>
+						<section>
+							<label for="email">Email</label>
+							<input type="text" name="email" id="email">
+						</section>
+						<section>
+							<label for="password">Password</label>
+							<input type="password" name="password" id="password" maxlength="20">
+							<p class="direction">Wrong user name or password</p>
+						</section>
+						<section>
+							<input type="submit" name="" value="Sign In">
+							<p class="signup">Not signed up?<a href="#">Register now!</a></p>
+						</section>
+					</fieldset>
+		 		</form>
+		 		<nav>
+		 			<h3>Recent Articles</h3>
+		 			<ul>
+		 				<li><a href="#">z-index</a></li>
+		 				<li><a href="#">box-image techniques</a></li>
+		 				<li><a href="#">shadow fx with css3</a></li>
+		 			</ul>
+		 		</nav>
+		 	</aside>
+		 </section>
+
+		 <section id="book-area">
+		 	<article class="book-area-list-left">
+		 		<div class="inner">
+		 			<h3>HTML5+CSS3</h3>
+		 			<img src="../kaola.jpg" alt="考拉" width="130px" height="160px">
+		 			<aside>
+		 				<ol>
+		 					<li><a href="">Download the code</a></li>
+		 					<li><a href="">table of contents</a></li>
+		 					<li><a href="">Buy this Book</a></li>
+		 				</ol>
+		 			</aside>
+		 		</div>
+		 	</article>
+		 	<article class="book-area-list-left">
+		 		<div class="inner">
+		 			<h3>HTML5+CSS3</h3>
+		 			<img src="../kaola.jpg" alt="考拉" width="130px" height="160px">
+		 			<aside>
+		 				<ol>
+		 					<li><a href="">Download the code</a></li>
+		 					<li><a href="">table of contents</a></li>
+		 					<li><a href="">Buy this Book</a></li>
+		 				</ol>
+		 			</aside>
+		 		</div>
+		 	</article>
+		 	<article class="book-area-list-right">
+		 		<div class="inner">
+		 			<h3>HTML5+CSS3</h3>
+		 			<img src="../kaola.jpg" alt="考拉" width="130px" height="160px">
+		 			<aside>
+		 				<ol>
+		 					<li><a href="">Download the code</a></li>
+		 					<li><a href="">table of contents</a></li>
+		 					<li><a href="">Buy this Book</a></li>
+		 				</ol>
+		 			</aside>
+		 		</div>
+		 	</article>
+		 	<article class="book-area-list-right">
+		 		<div class="inner">
+		 			<h3>HTML5+CSS3</h3>
+		 			<img src="../kaola.jpg" alt="考拉" width="130px" height="160px">
+		 			<aside>
+		 				<ol>
+		 					<li><a href="">Download the code</a></li>
+		 					<li><a href="">table of contents</a></li>
+		 					<li><a href="">Buy this Book</a></li>
+		 				</ol>
+		 			</aside>
+		 		</div>
+		 	</article>
+		 </section>
+
+		 <footer>
+		 	<p>A CSS template from 	<a href="#"><em>Stylin with CSS,Third Edition</em></a> by Charles Wyke-Smith</p>
+		 	<nav>
+		 		<ul>
+		 			<li><a href="#">Privacy Policy</a></li>
+		 			<li><a href="#">Contact Charles</a></li>
+		 		</ul>
+		 	</nav>
+		 </footer>
+	</div><!--wrap结束-->
+</body>
+</html>
